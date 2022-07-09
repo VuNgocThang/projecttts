@@ -3,39 +3,46 @@ import "../index.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaFacebookSquare, FaGoogle, FaSms } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import HomePage from "../HomePage/HomePage";
+
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
 
 function SignIn() {
-  const onFinish = (values:any) => {
-    console.log("Success:", values);
+  const navigate = useNavigate();
+  const onFinish = (values: any) => {
+    const storeUserName = localStorage.getItem("userName");
+    const storePassWord = localStorage.getItem("passWord");
+
+    // console.log("userName nhap", values.userName);
+    // console.log("userName o store", storeUserName);
+    // console.log("password nhap", values.passWord);
+    // console.log("password o store", storePassWord);
+    if (
+      values.userName === storeUserName &&
+      values.passWord === storePassWord
+    ) {
+      navigate("HomePage");
+      alert("login sucessed");
+    } else {
+      alert("login failed");
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  const [form] = Form.useForm();
   return (
     <div className="container">
       <div id="login" className="account">
         <div className="tab">
-          <NavLink
-            // exact
-            // activeStyle={{
-            //   backgroundColor: "white",
-            //   color: "red",
-            // }}
-            to="/SignIn"
-          >
-            Đăng nhập
-          </NavLink>
-          <NavLink
-            // exact
-            // activeStyle={{
-            //   backgroundColor: "white",
-            //   color: "red",
-            // }}
-            to="/SignUp"
-          >
-            Đăng ký
-          </NavLink>
+          <NavLink to="/SignIn">Đăng nhập</NavLink>
+          <NavLink to="/SignUp">Đăng ký</NavLink>
         </div>
 
         <div className="login-title">
@@ -46,50 +53,57 @@ function SignIn() {
           <p>Đăng nhập bằng</p>
         </div>
         <div className="login__social-top">
-          <div className="login-item">
-            <a href="http://facbook.com" title="Đăng nhập bằng Facebook">
-              <FaFacebookSquare style={{ fontSize: 18, marginRight: 5 }} />{" "}
-              Facebook
-            </a>
-          </div>
-          <div className="login-item">
-            <a href="https://google.com" title="Đăng nhập bằng Google">
-              <FaGoogle
-                style={{ fontSize: 18, marginRight: 5, color: "red" }}
-              />{" "}
-              Google
-            </a>
-          </div>
+          {/* <div className="login-item"> */}
+          <a
+            href="http://facbook.com"
+            title="Đăng nhập bằng Facebook"
+            className="item"
+          >
+            <FaFacebookSquare style={{ fontSize: 18, marginRight: 5 }} />{" "}
+            Facebook
+          </a>
+          {/* </div> */}
+          {/* <div className="login-item"> */}
+          <a
+            href="https://google.com"
+            title="Đăng nhập bằng Google"
+            className="item"
+          >
+            <FaGoogle style={{ fontSize: 18, marginRight: 5, color: "red" }} />{" "}
+            Google
+          </a>
+          {/* </div> */}
 
-          <div className="login-item">
-            <a href="https://gmail.com" title="Đăng nhập bằng PhoneNumber">
-              <FaSms style={{ fontSize: 18, marginRight: 5 }} /> Số điện thoại
-            </a>
-          </div>
+          {/* <div className="login-item"> */}
+          <a
+            href="https://gmail.com"
+            title="Đăng nhập bằng PhoneNumber"
+            className="item"
+          >
+            <FaSms style={{ fontSize: 18, marginRight: 5 }} /> Số điện thoại
+          </a>
+          {/* </div> */}
         </div>
         <div className="inputInfo">
           <Form
+            {...layout}
             name="basic"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
             initialValues={{
               remember: true,
             }}
+            form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
-              label="Số điện thoại/Email"
-              name="username"
+              label="Email"
+              name="userName"
               rules={[
                 {
                   required: true,
-                  message: "Please input your username!",
+                  type: "email",
+                  message: "Please input your userName!",
                 },
               ]}
             >
@@ -98,11 +112,11 @@ function SignIn() {
 
             <Form.Item
               label="Mật khẩu"
-              name="password"
+              name="passWord"
               rules={[
                 {
                   required: true,
-                  message: "Please input your password!",
+                  message: "Please input your passWord!",
                 },
               ]}
             >
@@ -126,11 +140,11 @@ function SignIn() {
                 span: 16,
               }}
             ></Form.Item>
+            <Button type="primary" htmlType="submit" className="button">
+              Đăng Nhập
+            </Button>
           </Form>
         </div>
-        <Button type="primary" htmlType="submit" className="button">
-          Đăng Nhập
-        </Button>
       </div>
     </div>
   );
