@@ -117,3 +117,55 @@ a.item {
 .button.signUp {
   margin-left: 50%;
 }
+/* homePage */
+.container-homePage {
+  position: relative;
+  box-sizing: border-box;
+}
+.navbar {
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 215px;
+  z-index: 1;
+}
+img {
+  height: 50px;
+}
+.navbar .ant-row {
+  height: 50px;
+}
+.navbar-item {
+  padding: 10px 10px;
+}
+.header {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 1;
+  top: 50px;
+  left: 215px;
+  right: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: 50px;
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.header .header-item:hover {
+  cursor: pointer;
+}
+
+.content__row {
+  border: 1px solid #ccc;
+}
+.content__row .content__row--items {
+  border-right: 1px solid #000;
+  padding: 10px 10px;
+  text-align: center;
+}
+.content__row .content__row--items:nth-last-child(1) {
+  border-right: none;
+}

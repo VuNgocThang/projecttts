@@ -4,7 +4,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaFacebookSquare, FaGoogle, FaSms } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import HomePage from "../HomePage/HomePage";
 
 const layout = {
   labelCol: { span: 8 },

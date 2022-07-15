@@ -1,5 +1,7 @@
 import "antd/dist/antd.css";
 import { Layout } from "antd";
+import React from "react";
+
 import "./App.css";
 import SignIn from "./Login/SignIn";
 import SignUp from "./Login/SignUp";
@@ -25,9 +27,11 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<SignIn />}></Route>
+            <Route path="/SignIn/HomePage" element={<HomePage />}></Route>
             <Route path="/HomePage" element={<HomePage />}></Route>
             <Route path="/SignIn" element={<SignIn />}></Route>
             <Route path="/SignUp" element={<SignUp />}></Route>
+            <Route path="/SignIn" element={<SignIn />}></Route>
           </Routes>
         </Content>
         <Footer
